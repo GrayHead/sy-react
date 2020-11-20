@@ -3,23 +3,13 @@ import User from '../user/User';
 
 class UsersComponent extends Component {
 
-	state = {
-		users: []
-	};
-
-	componentDidMount() {
-		fetch('https://jsonplaceholder.typicode.com/users')
-			.then(value => value.json())
-			.then(value => {
-				this.setState({users: value});
-			});
-	}
-
 
 	render() {
-		let {users} = this.state;
+
+		let {users, getSingleUserById} = this.props;
+		console.log(users);
 		return (
-			users.map(value => (<User key={value.id} user={value}/>))
+			users.map(value => (<User key={value.id} user={value} getSingleUserById={getSingleUserById}/>))
 		);
 	}
 }

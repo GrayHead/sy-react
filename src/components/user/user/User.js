@@ -9,13 +9,13 @@ class User extends Component {
 
 	render() {
 		let {cls} = this.state;
-		let {user} = this.props;
+		let {user, getSingleUserById} = this.props;
 		return (
 			<div className={cls}>
 				{
 					(user.id % 2 === 0 ? <div>{user.id} - {user.name}</div> : <div><b>{user.id} - {user.name}</b></div>)
 				}
-				<button onClick={this.changeColor}>details</button>
+				<button onClick={() => getSingleUserById(user.id)}>details</button>
 			</div>
 		);
 	}
