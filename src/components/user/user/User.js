@@ -1,6 +1,14 @@
 import React, {Component} from 'react';
 import './User.css';
 
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	withRouter
+} from 'react-router-dom';
+
 class User extends Component {
 	state = {
 		cls: ''
@@ -8,14 +16,16 @@ class User extends Component {
 
 
 	render() {
+
 		let {cls} = this.state;
-		let {user, getSingleUserById} = this.props;
+		let {user, match: {path}} = this.props;
+
 		return (
 			<div className={cls}>
 				{
 					(user.id % 2 === 0 ? <div>{user.id} - {user.name}</div> : <div><b>{user.id} - {user.name}</b></div>)
 				}
-				<button onClick={() => getSingleUserById(user.id)}>details</button>
+				<Link to={`${path}/${user.id}`}>to full info</Link>
 			</div>
 		);
 	}
@@ -26,4 +36,4 @@ class User extends Component {
 
 }
 
-export default User;
+export default withRouter(User);

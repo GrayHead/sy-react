@@ -1,14 +1,34 @@
 import React, {Component} from 'react';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	withRouter
+} from 'react-router-dom';
+import UserService from '../../../services/userService';
 
 class User extends Component {
 
+	state = {user: null};
+	userService = new UserService();
+
+	async componentDidMount() {
+		let {match: {params: {id}}} = this.props;
+		let user = await this.userService.getUser(id);
+		this.setState({user});
+
+	}
+
 
 	render() {
-
-		let {user} = this.props;
+		let {match: {params: {id}}} = this.props;
+		let {user} = this.state;
 		return (
 			<div>
-				{user.id}-{user.name}-{user.email}-{user.username}
+				{user && <div>{user.id}-{user.name}</div>}
+
+
 			</div>
 		);
 	}
@@ -16,4 +36,4 @@ class User extends Component {
 
 }
 
-export default User;
+export default withRouter(User);

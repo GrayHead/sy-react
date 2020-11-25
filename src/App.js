@@ -4,31 +4,49 @@ import UserService from './services/userService';
 import './App.css';
 import FullUser from './components/user/full-user/FullUser';
 
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link
+} from 'react-router-dom';
+
 class App extends Component {
 
-	userService = new UserService();
-	state = {users: [], user: null};
-
-
-	async componentDidMount() {
-		let allUsers = await this.userService.getAllUsers();
-		console.log(allUsers);
-		this.setState({users: allUsers});
-	}
-
-	getSingleUserById = (id) => {
-		let {users} = this.state;
-		let user = users.find(user => user.id === id);
-		this.setState({user});
-	};
 
 	render() {
-		let {user} = this.state;
+
 		return (
 			<div className='target'>
+				<Router>
+					<div>
+						<Link to={'/users'}>to users</Link>
+					</div>
+					<div>
+						<Link to={'/posts'}>to posts</Link>
+					</div>
 
-				<div><UsersComponent users={this.state.users} getSingleUserById={this.getSingleUserById}/></div>
-				{user && (<div><FullUser user={this.state.user}/></div>)}
+					<hr/>
+					<Switch>
+						{/*<Route path={'/users'}>*/}
+						{/*	<UsersComponent/>*/}
+						{/*</Route>*/}
+
+						<Route path={'/users'}>
+
+							<UsersComponent/>
+						</Route>
+
+						{/*<Route path={'/users'} component={UsersComponent}/>*/}
+
+
+						<Route path={'/posts'} render={() => (<div>all posts</div>)}>
+
+						</Route>
+
+					</Switch>
+					<hr/>
+				</Router>
 			</div>
 		);
 	}
