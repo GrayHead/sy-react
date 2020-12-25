@@ -1,15 +1,9 @@
 import React, {Component} from 'react';
 import UsersComponent from './components/user/all-users/UsersComponent';
-import UserService from './services/userService';
 import './App.css';
-import FullUser from './components/user/full-user/FullUser';
-
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link
-} from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
+import Nav from 'react-bootstrap/Nav';
 
 class App extends Component {
 
@@ -19,12 +13,26 @@ class App extends Component {
 		return (
 			<div className='target'>
 				<Router>
-					<div>
-						<Link to={'/users'}>to users</Link>
-					</div>
-					<div>
-						<Link to={'/posts'}>to posts</Link>
-					</div>
+					{/*<div>*/}
+					{/*	<Link to={'/users'}>to users</Link>*/}
+					{/*</div>*/}
+					{/*<div>*/}
+					{/*	<Link to={'/posts'}>to posts</Link>*/}
+					{/*</div>*/}
+
+
+					<Nav>
+						<Nav.Item>
+							<Nav.Link href="/">Home</Nav.Link>
+						</Nav.Item>
+						<Nav.Item>
+							<Nav.Link href="/users">Users</Nav.Link>
+						</Nav.Item>
+
+						<Nav.Item>
+							<Nav.Link href="/posts">Posts</Nav.Link>
+						</Nav.Item>
+					</Nav>
 
 					<hr/>
 					<Switch>
@@ -47,6 +55,8 @@ class App extends Component {
 					</Switch>
 					<hr/>
 				</Router>
+
+
 			</div>
 		);
 	}

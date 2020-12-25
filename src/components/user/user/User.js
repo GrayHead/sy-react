@@ -21,13 +21,15 @@ class User extends Component {
 		let {user, match: {path}} = this.props;
 
 		return (
-			<div className={cls}>
-				{
-					(user.id % 2 === 0 ? <div>{user.id} - {user.name}</div> : <div><b>{user.id} - {user.name}</b></div>)
-				}
-				<Link to={`${path}/${user.id}`}>to full info</Link>
+			<div className="card col-4">
+				<div className="card-body">
+					{user.id} - {user.name}
+					<div><Link to={`${path}/${user.id}`}>to full info</Link>;</div>
+				</div>
 			</div>
-		);
+
+		)
+			;
 	}
 
 	changeColor = () => {

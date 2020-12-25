@@ -28,14 +28,18 @@ class UsersComponent extends Component {
 		console.log(match);
 
 		return (
-			<div>
-				{
-					users.map(value => (<User user={value} key={value.id}/>))
-				}
+			<div className=' container-fluid'>
+				<div className='row'>
+					{
+						users.map(value => (<User user={value} key={value.id}/>))
+					}
+				</div>
 				<hr/>
 				<Switch>
 					<Route path={`${match.url}/:id`} render={(props) => {
-						let {match: {url}, match} = props;
+
+						let {match: {url}} = props;
+						console.log(url);
 						return (<FullUser key={url}/>);
 					}}>
 					</Route>
